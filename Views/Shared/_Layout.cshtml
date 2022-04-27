@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LTI DEMO WEBAPP</title>
+    @*<link href="~/Content/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">*@
+    <!-- Menu CSS -->
+    <link href="~/Content/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <!-- chartist CSS -->
+    <link href="~/Content/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link href="~/Content/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+    <!-- Vector CSS -->
+    <link href="~/Content/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- animation CSS -->
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="~/Content/css/colors/default.css" id="theme" rel="stylesheet">
+    <link href="~/Content/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @*<link rel="stylesheet" href="~/css/site.css" />*@
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header">
+            <div class="top-left-part">
+                <a class="logo" href="#">
+                    <img src="~/Content/plugins/images/admin-logo.png" alt="home" class="dark-logo" /><img src="~/Content/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
+                    </b>
+                    <span class="hidden-xs">
+                        <img src="~/Content/plugins/images/admin-text.png" alt="home" class="dark-logo" /><img src="~/Content/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
+                    </span>
+                </a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="~/Content/plugins/images/users/varun.png" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Manjeet</b><span class="caret"></span> </a>
+                    <ul class="dropdown-menu dropdown-user animated flipInY">
+                        <li>
+                            <div class="dw-user-box">
+                                <div class="u-img"><img src="~/Content/plugins/images/users/varun.png" alt="user" /></div>
+                                <div class="u-text">
+                                    <h4>LTI Admin</h4>
+                                    <p class="text-muted">ltidemo@lntinfotech.com</p><a href="#" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </div>
+    </nav>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav slimscrollsidebar">
+            <div class="sidebar-head">
+                <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">LTI-DEMO</span></h3>
+            </div>
+            <div class="user-profile">
+                <div class="dropdown user-pro-body">
+                    <div><img src="~/Content/plugins/images/users/varun.png" alt="user-img" class="img-circle"></div>
+                    <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                    @*<ul class="dropdown-menu animated flipInY">
+                            <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                            <li><a href="login.html"><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>*@
+                </div>
+            </div>
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="#" class="waves-effect active"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> </span></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cart-outline fa-fw" data-icon="v"></i> <span class="hide-menu">Menu/Category<span class="fa arrow"><span class="caret"></span></span> </span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="Index"><i data-icon="&#xe026;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Create Vehicals</span></a> </li>
+                        <li><a href="#"><i data-icon="&#xe026;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Create Vehicals Type</span></a> </li>
+                        <li><a href="#"><i data-icon="&#xe026;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Vehicals Features</span></a> </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="waves-effect"><i class="mdi mdi-format-color-fill fa-fw"></i> <span class="hide-menu">List Of Vehicals<span class="fa arrow"><span class="caret"></span></span></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="Bind"><i data-icon="&#xe026;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Vehical List</span></a> </li>
+                        <li><a href="#"><i data-icon="&#xe026;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Vehical Feature List</span></a></li>
+                        <li><a href="panel-ui-block.html"><i data-icon="&#xe025;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Vehical model List</span></a></li>
+                    </ul>
+                </li>
+                @*<li>
+                        <a href="#" class="waves-effect"><i class="mdi mdi-content-copy fa-fw"></i> <span class="hide-menu">Sample Pages<span class="fa arrow"></span><span class="label label-rouded label-warning pull-right">30</span></span></a>
+                    </li>*@
+                @*<li>
+                        <a href="javascript:void(0)" class="waves-effect"><i class="ti-info-alt fa-fw"></i><span class="hide-menu">Error Pages</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li><a href="400.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error 400</span></a></li>
+                            <li><a href="403.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error 403</span></a></li>
+                            <li><a href="404.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error 404</span></a></li>
+                            <li><a href="500.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error 500</span></a></li>
+                            <li><a href="503.html"><i class="ti-info-alt fa-fw"></i> <span class="hide-menu">Error 503</span></a></li>
+                        </ul>
+                    </li>*@
+            </ul>
+        </div>
+    </div>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            @RenderBody()
+            <footer class="footer text-center">&copy; Design by 2019 lti.in </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    @*<script type="text/javascript" src="~/Content/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="~/Content/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <!-- Menu Plugin JavaScript -->
+    <script src="~/Content/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--Counter js -->
+    <script src="~/Content/plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="~/Content/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="~/Content/js/jquery.slimscroll.js"></script>
+    <script src="~/Content/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/js/waves.js"></script>
+    <!-- Vector map JavaScript -->
+    <script src="~/Content/plugins/bower_components/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/Content/plugins/bower_components/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/plugins/bower_components/vectormap/jquery-jvectormap-in-mill.js"></script>
+    <script src="~/Content/plugins/bower_components/vectormap/jquery-jvectormap-us-aea-en.js"></script>
+    <!-- chartist chart -->
+    <script src="~/Content/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
+    <script src="~/Content/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- sparkline chart JavaScript -->
+    <script src="~/Content/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Content/js/custom.min.js"></script>
+
+    <!--Style Switcher -->
+    <script src="~/Content/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

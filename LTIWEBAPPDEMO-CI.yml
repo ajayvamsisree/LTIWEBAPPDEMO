@@ -1,0 +1,35 @@
+variables:
+- name: BuildParameters.solution
+  value: LTIWEBAPPDEMO.sln
+name: $(date:yyyyMMdd)$(rev:.r)
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+  - task: NuGetToolInstaller@0
+    displayName: Use NuGet 4.4.1
+    inputs:
+      versionSpec: 4.4.1
+  - task: NuGetCommand@2
+    displayName: NuGet custom
+    inputs:
+      command: custom
+      solution: $(BuildParameters.solution)
+      arguments: restore -MSBuildVersion 16.11
+  - task: VSBuild@1
+    displayName: Build solution LTIWEBAPPDEMO.sln
+    inputs:
+      solution: $(BuildParameters.solution)
+      msbuildArgs: /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    condition: succeededOrFailed()
+    inputs:
+      PathtoPublish: $(build.artifactstagingdirectory)
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
+...

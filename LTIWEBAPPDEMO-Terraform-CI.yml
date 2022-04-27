@@ -1,0 +1,24 @@
+trigger:
+  branches:
+    include:
+    - refs/heads/main
+  paths:
+    include:
+    - Terraform
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: windows-2019
+  steps:
+  - checkout: self
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)/Terraform'
+    inputs:
+      SourceFolder: Terraform/WebApp
+      TargetFolder: $(Build.ArtifactStagingDirectory)/Terraform
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)/Terraform
+...
