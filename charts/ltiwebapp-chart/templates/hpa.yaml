@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "LTIWEBAPPDEMO_Chart.fullname" . }}
+  name: {{ include "ltiwebapp-chart.fullname" . }}
   labels:
-    {{- include "LTIWEBAPPDEMO_Chart.labels" . | nindent 4 }}
+    {{- include "ltiwebapp-chart.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "LTIWEBAPPDEMO_Chart.fullname" . }}
+    name: {{ include "ltiwebapp-chart.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

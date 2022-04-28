@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "LTIWEBAPPDEMO_Chart.name" -}}
+{{- define "ltiwebapp-chart.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "LTIWEBAPPDEMO_Chart.fullname" -}}
+{{- define "ltiwebapp-chart.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "LTIWEBAPPDEMO_Chart.chart" -}}
+{{- define "ltiwebapp-chart.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "LTIWEBAPPDEMO_Chart.labels" -}}
-helm.sh/chart: {{ include "LTIWEBAPPDEMO_Chart.chart" . }}
-{{ include "LTIWEBAPPDEMO_Chart.selectorLabels" . }}
+{{- define "ltiwebapp-chart.labels" -}}
+helm.sh/chart: {{ include "ltiwebapp-chart.chart" . }}
+{{ include "ltiwebapp-chart.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "LTIWEBAPPDEMO_Chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "LTIWEBAPPDEMO_Chart.name" . }}
+{{- define "ltiwebapp-chart.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ltiwebapp-chart.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "LTIWEBAPPDEMO_Chart.serviceAccountName" -}}
+{{- define "ltiwebapp-chart.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "LTIWEBAPPDEMO_Chart.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ltiwebapp-chart.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
